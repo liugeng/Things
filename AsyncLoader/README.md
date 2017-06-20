@@ -36,3 +36,27 @@ void test() {
 	}
 }
 ```
+
+输出:
+```
+loading: imagetask01.png
+loading: imagetask02.png
+loaded: imagetask01.png
+loading: imagetask03.png
+loaded: imagetask02.png
+loading: imagetask04.png
+loaded: imagetask03.png
+loading: imagetask05.png
+loaded: imagetask04.png
+loading: imagetask06.png
+loaded: imagetask05.png
+loading: imagetask07.png
+loaded: imagetask06.png
+loading: imagetask08.png
+loaded: imagetask07.png
+loading: imagetask09.png
+loaded: imagetask08.png
+loading: imagetask10.png
+loaded: imagetask09.png
+loaded: imagetask10.png
+```
