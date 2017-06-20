@@ -7,6 +7,8 @@
 
 #include "AsyncLoader.h"
 
+#pragma region "AsyncLoader"
+
 AsyncLoader::AsyncLoader() {
 	AsyncLoaderManager::addLoader(this);
 }
@@ -72,6 +74,9 @@ void AsyncLoader::update() {
 	_toHandles.clear();
 }
 
+#pragma endregion /* AsyncLoader */
+
+#pragma region "AsyncLoaderManager"
 
 std::set<AsyncLoader*> AsyncLoaderManager::_loaders;
 
@@ -88,3 +93,5 @@ void AsyncLoaderManager::addLoader(AsyncLoader* loader) {
 void AsyncLoaderManager::removeLoader(AsyncLoader* loader) {
 	_loaders.erase(loader);
 }
+
+#pragma endregion /* AsyncLoaderManager */

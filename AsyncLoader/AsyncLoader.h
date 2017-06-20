@@ -36,6 +36,7 @@ public:
 	virtual void onFinish() = 0;
 };
 
+
 class AsyncLoaderManager;
 /** a loader with a loading thread
  */
@@ -78,6 +79,7 @@ private:
 	// is thread is waiting
 	bool _waiting = false;
 };
+
 
 class AsyncLoaderManager  {
 	friend AsyncLoader;
