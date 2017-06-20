@@ -46,8 +46,13 @@ void AsyncLoader::run() {
 			IAsyncTask* task = _tasks.front();
 			_tasks.pop();
 			_tasksLock.unlock();
-			bool ret = task->loadAsync();
-			task->staus = (ret ? IAsyncTask::SUCCESS : IAsyncTask::FAILED);
+			bool ret = false;
+			try {
+				ret = task->loadAsync();
+			} catch (...) {
+				printf("load error: %s\n", task->fullpath.c_str());
+			}
+			task->status = (ret ? IAsyncTask::SUCCESS : IAsyncTask::FAILED);
 			
 			_resultsLock.lock();
 			_results.push_back(task);

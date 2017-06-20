@@ -20,18 +20,16 @@
 class IAsyncTask {
 public:
 	// the result of loading resource
-	enum { NONE, SUCCESS, FAILED } staus = NONE;
+	enum { NONE, SUCCESS, FAILED } status = NONE;
 	// the fullpath of resource
-	std::string _fullpath = "";
-	// the loaded data of resource
-	unsigned char* _data = nullptr;
+	std::string fullpath = "";
 	
 	/** do loading things in this function, run in loading thread
 	 * @return true if load success, false if failed
 	 */
 	virtual bool loadAsync() = 0;
 	/** handle loaded resource in this function, run in main thread
-	 * the memory of 'this' and '_data' need managed by user
+	 * task need be deleted by user
 	 */
 	virtual void onFinish() = 0;
 };

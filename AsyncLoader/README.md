@@ -2,19 +2,24 @@
 ```
 #include "AsyncLoader.h"
 std::mutex _printLock;
-class TestTask : public IAsyncTask {
+class ImageTask : public IAsyncTask {
 public:
-	TestTask(std::string fullpath) { _fullpath = fullpath; }
+	// the loaded data of resource
+	unsigned char* data = nullptr;
+	
+	ImageTask(std::string path) { fullpath = path; }
+	
 	virtual bool loadAsync() override {
 		_printLock.lock();
-		printf("loading: %s\n", _fullpath.c_str());
+		printf("loading: %s\n", fullpath.c_str());
 		_printLock.unlock();
 		sleep(100);
 		return true;
 	}
+	
 	virtual void onFinish() override {
 		std::lock_guard<std::mutex> locker(_printLock);
-		printf("loaded: %s\n", _fullpath.c_str());
+		printf("loaded: %d %s\n", status, fullpath.c_str());
 		delete this;
 	}
 };
@@ -26,7 +31,7 @@ void test() {
 	for (int i = 1; i <= 10; i++) {
 		memset(buf, 0, 128);
 		sprintf(buf, "imagetask%02d.png", i);
-		TestTask* task = new TestTask(buf);
+		ImageTask* task = new ImageTask(buf);
 		loader->put(task);
 	}
 	
