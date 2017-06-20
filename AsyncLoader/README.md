@@ -1,4 +1,5 @@
 例:
+```
 #include "AsyncLoader.h"
 std::mutex _printLock;
 class TestTask : public IAsyncTask {
@@ -34,3 +35,4 @@ void test() {
 		sleep(30);
 	}
 }
+```
