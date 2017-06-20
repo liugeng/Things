@@ -1,4 +1,5 @@
 例:
+```
 #ifdef USE_LOG_FILE
     char logHeader[512] = {};
     const char* headerFormat = ""
@@ -13,3 +14,4 @@
 	
     LogInfo("loginfo");
     LogInfo("hihi");
+```
