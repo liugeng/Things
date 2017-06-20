@@ -53,7 +53,7 @@ private:
 	void start();
 	/** the loading loop */
 	void run();
-	/** handle the loaded task */
+	/** handle the loaded tasks */
 	void update();
 	
 	// the working thread
