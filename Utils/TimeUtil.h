@@ -21,7 +21,7 @@ namespace util {
 		/** get second time from 1970-1-1 */
 		static int getSecond();
 		
-		/** get passed second time from first call this function */
+		/** get passed millisecnod time from first call this function */
 		static int getTimePassed();
 		
 		/** 时间的格式化字符串 
