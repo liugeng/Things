@@ -55,4 +55,26 @@ void test17() {
 		printf("%s\n", i.c_str());
 	}
 }
+
+#include "Things/Utils/MathUtil.h"
+void test19() {
+	int64_t n1 = 1;
+	for (int i = 0; i < 10; i++) {
+		printf("%s\n", util::Math::formatNumber(n1).c_str());
+		n1 *= 10;
+	}
+	
+	/*
+		1
+		10
+		100
+		1,000
+		10,000
+		100,000
+		1,000,000
+		10,000,000
+		100,000,000
+		1,000,000,000
+	*/
+}
 ```

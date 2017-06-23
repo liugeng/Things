@@ -79,7 +79,6 @@ namespace util {
 				i = '/';
 			}
 		}
-		//ret = ret.replace(path.begin(), path.end(), "\\", "/");
 		if (ret[ret.length()-1] != '/') {
 			ret.append("/");
 		}
