@@ -13,14 +13,16 @@
 #include <map>
 #include <vector>
 
-class Property {
+/** INI file, format: \w+=\w+
+ */
+class Ini {
 public:
 	static void create(const std::string name, const std::string filepath);
 	static void purge();
-	static Property& m (const std::string name);
+	static Ini& m (const std::string name);
 	
-	Property(std::string filepath);
-	virtual ~Property();
+	Ini(std::string filepath);
+	virtual ~Ini();
 	
 	void set(std::string key, std::string val);
 	const std::string& get(std::string key);
@@ -33,7 +35,7 @@ private:
 	std::map<std::string, Line> _prop;
 	std::vector<Line> _emptylines;
 	static std::string _emptyProp;
-	static std::map<std::string, Property*> _m;
+	static std::map<std::string, Ini*> _m;
 	
 	void load();
 	void addEmptyLine(const Line& el);

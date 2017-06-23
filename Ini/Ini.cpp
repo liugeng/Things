@@ -5,7 +5,7 @@
  * Created on 2017年6月22日, 下午3:46
  */
 
-#include "Property.h"
+#include "Ini.h"
 #include "../Utils/FileUtil.h"
 #include <string.h>
 
@@ -13,29 +13,29 @@ using namespace std;
 
 #define LINE_LEN 128
 
-string Property::_emptyProp = "";
-map<string, Property*> Property::_m;
+string Ini::_emptyProp = "";
+map<string, Ini*> Ini::_m;
 
-void Property::create(const std::string name, const std::string filepath) {
+void Ini::create(const std::string name, const std::string filepath) {
 	if (_m.find(name) != _m.end()) {
 		printf("Property create repeat: %s\n", name.c_str());
 		return;
 	}
-	_m[name] = new Property(filepath);
+	_m[name] = new Ini(filepath);
 }
 
-void Property::purge() {
+void Ini::purge() {
 	for (auto p : _m) {
 		delete p.second;
 	}
 	_m.clear();
 }
 
-Property& Property::m(const std::string name) {
+Ini& Ini::m(const std::string name) {
 	return *_m[name];
 }
 
-Property::Property(std::string filepath) {
+Ini::Ini(std::string filepath) {
 	try {
 		if (!util::File::exists(filepath)) {
 			_fp = fopen(filepath.c_str(), "wb");
@@ -52,14 +52,14 @@ Property::Property(std::string filepath) {
 	}
 }
 
-Property::~Property() {
+Ini::~Ini() {
 	if (_fp) {
 		fclose(_fp);
 		_fp = nullptr;
 	}
 }
 
-void Property::load() {
+void Ini::load() {
 	if (!_fp) {
 		return;
 	}
@@ -107,7 +107,7 @@ void Property::load() {
 	}
 }
 
-void Property::addEmptyLine(const Line& el) {
+void Ini::addEmptyLine(const Line& el) {
 	if (_emptylines.empty()) {
 		_emptylines.push_back(move(el));
 		return;
@@ -121,7 +121,7 @@ void Property::addEmptyLine(const Line& el) {
 	_emptylines.push_back(move(el));
 }
 
-void Property::set(string key, string val) {
+void Ini::set(string key, string val) {
 	if (!_fp) {
 		return;
 	}
@@ -172,14 +172,14 @@ void Property::set(string key, string val) {
 	fflush(_fp);
 }
 
-void Property::writeProp(const string& key, const string& val) {
+void Ini::writeProp(const string& key, const string& val) {
 	string s(key);
 	s += "=";
 	s += val;
 	fwrite(s.c_str(), 1, s.length(), _fp);
 }
 
-const string& Property::get(string key) {
+const string& Ini::get(string key) {
 	auto it = _prop.find(key);
 	if (it != _prop.end()) {
 		return (*it).second.val;
@@ -187,7 +187,7 @@ const string& Property::get(string key) {
 	return _emptyProp;
 }
 
-void Property::remove(std::string key) {
+void Ini::remove(std::string key) {
 	auto it = _prop.find(key);
 	if (it != _prop.end()) {
 		Line& l = (*it).second;
