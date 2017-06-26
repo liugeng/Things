@@ -1,15 +1,15 @@
 例:
 ```
 void test() {
-	Property::create("base", "./base.prop");
-	Property::create("win", "./win.prop");
+	Ini::create("base", "./base.ini");
+	Ini::create("win", "./win.ini");
 	
-	Property::m("base").set("eee", "EEE");
-	Property::m("base").remove("ccc");
-	printf("%s\n", Property::m("base").get("bbb").c_str());
+	Ini::m("base").set("eee", "EEE");
+	Ini::m("base").remove("ccc");
+	printf("%s\n", Ini::m("base").get("bbb").c_str());
 	
-	Property::m("win").set("abc", "ABDFAFDFA");
+	Ini::m("win").set("mr_file37.mod", "ABDFAFDFA");
 	
-	Property::purge();
+	Ini::purge();
 }
 ```
