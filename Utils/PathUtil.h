@@ -35,7 +35,7 @@ namespace util {
 		
 	private:
 		/** replace '\\' to '/' and add a '/' at last */
-		static std::string valide(const std::string& path);
+		static std::string convertBackslashes(const std::string& path);
 		
 		// root search pathes
 		static std::map<int, std::string> _roots;

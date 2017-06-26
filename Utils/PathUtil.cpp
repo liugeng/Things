@@ -17,11 +17,11 @@ namespace util {
 	map<int, string> Path::_dirs;
 	
 	void Path::setRootWithKey(int key, const string& path) {
-		_roots[key] = move(valide(path));
+		_roots[key] = move(convertBackslashes(path));
 	}
 
 	void Path::setDirWithKey(int key, const string& path) {
-		_dirs[key] = move(valide(path));
+		_dirs[key] = move(convertBackslashes(path));
 	}
 
 	string Path::getFullPath(const string& filename, int dirkey, int rootkey) {
@@ -37,7 +37,7 @@ namespace util {
 	}
 	
 	void Path::assure(const string& path) {
-		string s = move(valide(path));
+		string s = move(convertBackslashes(path));
 		char* arr = new char[s.length()+1];
 		memset(arr, 0, s.length()+1);
 		memcpy(arr, s.c_str(), s.length());
@@ -69,7 +69,7 @@ namespace util {
 		return access(path.c_str(), F_OK) != -1;
 	}
 
-	string Path::valide(const string& path) {
+	string Path::convertBackslashes(const string& path) {
 		if (path.empty()) {
 			return path;
 		}
