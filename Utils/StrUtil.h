@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
 
 namespace util {
 	class Str {
@@ -20,6 +21,19 @@ namespace util {
 		static bool startsWith(const std::string& s, const std::string& t);
 		
 		static bool endsWith(const std::string& s, const std::string& t);
+		
+		template<class To, class Ti>
+		static To to(const Ti& i) {
+			static std::stringstream _ss;
+			_ss.str("");
+			_ss.clear();
+			_ss << i;
+			To o;
+			_ss >> o;
+			_ss.str("");
+			_ss.clear();
+			return std::move(o);
+		}
 	};
 }
 

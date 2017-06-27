@@ -32,5 +32,18 @@ namespace util {
 	bool Str::endsWith(const string& s, const string& t) {
 		return s.rfind(t) == s.length() - t.length();
 	}
+	
+//	template<class To, class Ti>
+//	To Str::to(const Ti& i) {
+//		static stringstream _ss;
+//		_ss.str("");
+//		_ss.clear();
+//		_ss << i;
+//		To o;
+//		_ss >> o;
+//		_ss.str("");
+//		_ss.clear();
+//		return move(o);
+//	}
 }
 

@@ -54,6 +54,19 @@ void test17() {
 	for (auto& i : v) {
 		printf("%s\n", i.c_str());
 	}
+	
+	std::string s2 = "7";
+	printf(	"%d\n"
+			"%g\n"
+			"%s\n"
+			"%s\n"
+			"%d\n"
+			, util::Str::to<int>("3")
+			, util::Str::to<float>("1.2")
+			, util::Str::to<std::string>(4).c_str()
+			, util::Str::to<std::string>(5.6).c_str()
+			, util::Str::to<int>(s2)
+		);
 }
 
 #include "Things/Utils/MathUtil.h"
@@ -76,5 +89,17 @@ void test19() {
 		100,000,000
 		1,000,000,000
 	*/
+}
+
+#include "Things/Utils/DelaySimulator.h"
+void test22() {
+	while(true) {
+		SIMULATE_DELAY(100, continue)
+
+		int t1 = util::Time::getMsecPassed();
+		static int t0 = 0;
+		printf("%d\n", t1 - t0);
+		t0 = t1;
+	}
 }
 ```
